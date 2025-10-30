@@ -5,4 +5,11 @@
         android:id="@+id/menu_history"
         android:title="History"
         app:showAsAction="always" />
+
+    <item
+        android:id="@+id/menu_clear"
+        android:title="Clear All"
+        app:showAsAction="always" />
+
+
 </menu>
