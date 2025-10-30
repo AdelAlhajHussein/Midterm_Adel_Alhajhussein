@@ -69,4 +69,22 @@ public class MainActivity extends AppCompatActivity {
 
         adapter.notifyDataSetChanged();
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(android.view.MenuItem item) {
+        if (item.getItemId() == R.id.menu_history) {
+            // Open DetailActivity
+            android.content.Intent intent = new android.content.Intent(this, DetailActivity.class);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }
