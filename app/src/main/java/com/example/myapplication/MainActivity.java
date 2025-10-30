@@ -33,6 +33,23 @@ public class MainActivity extends AppCompatActivity {
         lvResults.setAdapter(adapter);
 
         btnGenerate.setOnClickListener(v -> generateTable());
+
+        lvResults.setOnItemClickListener((parent, view, position, id) -> {
+            String selectedItem = tableList.get(position);
+
+
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Delete Item")
+                    .setMessage("Are you sure you want to delete \"" + selectedItem + "\"?")
+                    .setPositiveButton("Yes", (dialog, which) -> {
+                        tableList.remove(position);
+                        adapter.notifyDataSetChanged();
+                        Toast.makeText(this, "Deleted: " + selectedItem, Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("No", null)
+                    .show();
+        });
+
     }
 
     private void generateTable() {
