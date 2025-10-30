@@ -1,6 +1,8 @@
 package com.example.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -87,6 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+
     private void generateTable() {
         String input = etNumber.getText().toString().trim();
 
@@ -114,12 +117,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(android.view.MenuItem item) {
         if (item.getItemId() == R.id.menu_history) {
-            // Open DetailActivity
-            android.content.Intent intent = new android.content.Intent(this, DetailActivity.class);
+            Intent intent = new Intent(this, DetailActivity.class);
+            intent.putStringArrayListExtra("history", historyList); // ✅ add this line
             startActivity(intent);
             return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
 
 }
