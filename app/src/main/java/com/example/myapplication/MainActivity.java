@@ -16,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     EditText etNumber;
     Button btnGenerate;
     ListView lvResults;
+    ArrayList<String> resultsList = new ArrayList<>();
+    ArrayList<String> historyList = new ArrayList<>();
     ArrayList<String> tableList;
     ArrayAdapter<String> adapter;
 
@@ -49,6 +51,39 @@ public class MainActivity extends AppCompatActivity {
                     .setNegativeButton("No", null)
                     .show();
         });
+
+        etNumber = findViewById(R.id.etNumber);
+        btnGenerate = findViewById(R.id.btnGenerate);
+        lvResults = findViewById(R.id.lvResults);
+
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, resultsList);
+        lvResults.setAdapter(adapter);
+
+
+        btnGenerate.setOnClickListener(v -> {
+            String input = etNumber.getText().toString();
+
+            if (input.isEmpty()) {
+                Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int number = Integer.parseInt(input);
+            resultsList.clear();
+
+            for (int i = 1; i <= 10; i++) {
+                String line = number + " × " + i + " = " + (number * i);
+                resultsList.add(line);
+            }
+
+            adapter.notifyDataSetChanged();
+
+            // Add to history for the History screen
+            historyList.clear();
+            historyList.addAll(resultsList);
+        });
+
+
 
     }
 
